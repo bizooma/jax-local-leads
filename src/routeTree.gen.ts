@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ForLawFirmsRouteImport } from './routes/for-law-firms'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AttorneysRouteImport } from './routes/attorneys'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,11 @@ import { Route as AttorneysSlugRouteImport } from './routes/attorneys.$slug'
 const ForLawFirmsRoute = ForLawFirmsRouteImport.update({
   id: '/for-law-firms',
   path: '/for-law-firms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AttorneysRoute = AttorneysRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attorneys': typeof AttorneysRouteWithChildren
+  '/contact': typeof ContactRoute
   '/for-law-firms': typeof ForLawFirmsRoute
   '/attorneys/$slug': typeof AttorneysSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attorneys': typeof AttorneysRouteWithChildren
+  '/contact': typeof ContactRoute
   '/for-law-firms': typeof ForLawFirmsRoute
   '/attorneys/$slug': typeof AttorneysSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attorneys': typeof AttorneysRouteWithChildren
+  '/contact': typeof ContactRoute
   '/for-law-firms': typeof ForLawFirmsRoute
   '/attorneys/$slug': typeof AttorneysSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/attorneys'
+    | '/contact'
     | '/for-law-firms'
     | '/attorneys/$slug'
     | '/practice-areas/$slug'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/attorneys'
+    | '/contact'
     | '/for-law-firms'
     | '/attorneys/$slug'
     | '/practice-areas/$slug'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/attorneys'
+    | '/contact'
     | '/for-law-firms'
     | '/attorneys/$slug'
     | '/practice-areas/$slug'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AttorneysRoute: typeof AttorneysRouteWithChildren
+  ContactRoute: typeof ContactRoute
   ForLawFirmsRoute: typeof ForLawFirmsRoute
   PracticeAreasSlugRoute: typeof PracticeAreasSlugRoute
 }
@@ -114,6 +127,13 @@ declare module '@tanstack/react-router' {
       path: '/for-law-firms'
       fullPath: '/for-law-firms'
       preLoaderRoute: typeof ForLawFirmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/attorneys': {
@@ -170,6 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AttorneysRoute: AttorneysRouteWithChildren,
+  ContactRoute: ContactRoute,
   ForLawFirmsRoute: ForLawFirmsRoute,
   PracticeAreasSlugRoute: PracticeAreasSlugRoute,
 }
