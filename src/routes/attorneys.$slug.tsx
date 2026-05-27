@@ -34,7 +34,7 @@ export const Route = createFileRoute("/attorneys/$slug")({
 });
 
 function FirmProfile() {
-  const { firm } = Route.useLoaderData();
+  const { firm } = Route.useLoaderData() as { firm: import("@/data/firms").Firm };
 
   return (
     <>
