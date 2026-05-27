@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AttorneysRouteImport } from './routes/attorneys'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PracticeAreasSlugRouteImport } from './routes/practice-areas.$slug'
 import { Route as AttorneysSlugRouteImport } from './routes/attorneys.$slug'
 
 const AttorneysRoute = AttorneysRouteImport.update({
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeAreasSlugRoute = PracticeAreasSlugRouteImport.update({
+  id: '/practice-areas/$slug',
+  path: '/practice-areas/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AttorneysSlugRoute = AttorneysSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -33,29 +39,38 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/attorneys': typeof AttorneysRouteWithChildren
   '/attorneys/$slug': typeof AttorneysSlugRoute
+  '/practice-areas/$slug': typeof PracticeAreasSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/attorneys': typeof AttorneysRouteWithChildren
   '/attorneys/$slug': typeof AttorneysSlugRoute
+  '/practice-areas/$slug': typeof PracticeAreasSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/attorneys': typeof AttorneysRouteWithChildren
   '/attorneys/$slug': typeof AttorneysSlugRoute
+  '/practice-areas/$slug': typeof PracticeAreasSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/attorneys' | '/attorneys/$slug'
+  fullPaths: '/' | '/attorneys' | '/attorneys/$slug' | '/practice-areas/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/attorneys' | '/attorneys/$slug'
-  id: '__root__' | '/' | '/attorneys' | '/attorneys/$slug'
+  to: '/' | '/attorneys' | '/attorneys/$slug' | '/practice-areas/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/attorneys'
+    | '/attorneys/$slug'
+    | '/practice-areas/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AttorneysRoute: typeof AttorneysRouteWithChildren
+  PracticeAreasSlugRoute: typeof PracticeAreasSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -72,6 +87,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice-areas/$slug': {
+      id: '/practice-areas/$slug'
+      path: '/practice-areas/$slug'
+      fullPath: '/practice-areas/$slug'
+      preLoaderRoute: typeof PracticeAreasSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/attorneys/$slug': {
@@ -99,6 +121,7 @@ const AttorneysRouteWithChildren = AttorneysRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AttorneysRoute: AttorneysRouteWithChildren,
+  PracticeAreasSlugRoute: PracticeAreasSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
