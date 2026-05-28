@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, X, Mail, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import lawFirmOffice from "@/assets/law-firm-office.jpg";
 
 export const Route = createFileRoute("/for-law-firms")({
   head: () => ({
