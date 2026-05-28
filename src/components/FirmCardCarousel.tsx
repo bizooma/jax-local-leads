@@ -16,6 +16,8 @@ export function FirmCardCarousel({ firms, filter }: Props) {
       ? firms
       : firms.filter((f) => f.practice_areas.includes(filter));
 
+  const [mounted, setMounted] = useState(false);
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -36,6 +38,10 @@ export function FirmCardCarousel({ firms, filter }: Props) {
   }, [emblaApi]);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on("reInit", onSelect);
@@ -53,6 +59,24 @@ export function FirmCardCarousel({ firms, filter }: Props) {
     return (
       <div className="mt-8 rounded-xl border border-border bg-card p-8 text-center text-sm text-muted-foreground">
         No firms match the selected practice area.
+      </div>
+    );
+  }
+
+  // During SSR / initial render, show static cards to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="mt-8">
+        <div className="flex gap-4 overflow-hidden">
+          {filtered.slice(0, 3).map((firm) => (
+            <div
+              key={firm.id}
+              className="min-w-0 shrink-0 grow-0 basis-[85%] sm:basis-[45%] lg:basis-[31%]"
+            >
+              <FirmCard firm={firm} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
