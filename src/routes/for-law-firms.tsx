@@ -20,7 +20,9 @@ export const Route = createFileRoute("/for-law-firms")({
 function ForLawFirms() {
   return (
     <>
-      <section className="bg-gradient-river text-primary-foreground">
+      <section className="relative isolate overflow-hidden bg-foreground text-primary-foreground">
+        <img src={lawFirmOffice} alt="Modern law firm office interior" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-foreground/85 via-foreground/65 to-foreground/40" />
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">For Law Firms</span>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl text-balance">
