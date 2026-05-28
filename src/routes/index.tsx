@@ -27,7 +27,13 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-river text-primary-foreground">
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${jaxSkyline})` }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/70" aria-hidden />
         <div className="absolute inset-0 opacity-[0.07]" aria-hidden>
           {/* Bridge silhouette inspired by the Main Street Bridge */}
           <svg viewBox="0 0 1200 400" className="h-full w-full" preserveAspectRatio="xMidYMax slice">
