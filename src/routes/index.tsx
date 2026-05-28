@@ -100,12 +100,15 @@ function Index() {
 
       {/* WHY LOCAL SEARCH MATTERS */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <h2 className="text-center font-display text-2xl font-bold text-foreground sm:text-3xl">
+          Attorneys, this is for you!
+        </h2>
+        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Local Search</span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl text-balance">
+            <h3 className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl text-balance">
               Why Local Search Matters After an Accident
-            </h2>
+            </h3>
             <div className="mt-6 space-y-4 text-muted-foreground">
               <p>
                 When someone is injured, they often search for immediate help using phrases like
