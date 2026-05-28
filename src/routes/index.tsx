@@ -3,7 +3,8 @@ import { useState } from "react";
 import { ArrowRight, Search, Shield, MapPin, Globe, Sparkles, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PracticeAreaFilter } from "@/components/PracticeAreaFilter";
-import { PRACTICE_AREAS, type PracticeAreaSlug } from "@/data/firms";
+import { FirmCardCarousel } from "@/components/FirmCardCarousel";
+import { PRACTICE_AREAS, FIRMS, type PracticeAreaSlug } from "@/data/firms";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,6 +90,7 @@ function Index() {
               </Link>
             </p>
           )}
+          <FirmCardCarousel firms={FIRMS} filter={filter} />
         </div>
       </section>
 
