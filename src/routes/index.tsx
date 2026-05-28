@@ -34,15 +34,6 @@ function Index() {
           aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/70" aria-hidden />
-        <div className="absolute inset-0 opacity-[0.07]" aria-hidden>
-          {/* Bridge silhouette inspired by the Main Street Bridge */}
-          <svg viewBox="0 0 1200 400" className="h-full w-full" preserveAspectRatio="xMidYMax slice">
-            <path d="M0,320 L120,320 L160,180 L200,320 L400,320 L440,140 L480,320 L720,320 L760,140 L800,320 L1000,320 L1040,180 L1080,320 L1200,320 L1200,400 L0,400 Z" fill="currentColor" />
-            <line x1="160" y1="180" x2="440" y2="140" stroke="currentColor" strokeWidth="3" />
-            <line x1="440" y1="140" x2="760" y2="140" stroke="currentColor" strokeWidth="3" />
-            <line x1="760" y1="140" x2="1040" y2="180" stroke="currentColor" strokeWidth="3" />
-          </svg>
-        </div>
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
