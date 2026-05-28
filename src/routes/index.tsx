@@ -4,6 +4,7 @@ import { ArrowRight, Search, Shield, MapPin, Globe, Sparkles, Target, TrendingUp
 import { Button } from "@/components/ui/button";
 import { PracticeAreaFilter } from "@/components/PracticeAreaFilter";
 import { FirmCardCarousel } from "@/components/FirmCardCarousel";
+import { HeroLeadForm } from "@/components/HeroLeadForm";
 import { PRACTICE_AREAS, FIRMS, type PracticeAreaSlug } from "@/data/firms";
 import jaxSkyline from "@/assets/jax-skyline.avif";
 
@@ -35,27 +36,32 @@ function Index() {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/70" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
-              <MapPin className="h-3 w-3" /> Jacksonville · Duval County · FL
-            </span>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] text-balance sm:text-5xl lg:text-6xl">
-              Find Personal Injury Attorneys in <span className="text-accent">JAX</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
-              A local directory of Jacksonville accident and injury law firms helping residents connect with legal
-              help after car accidents, truck accidents, motorcycle accidents, slip and falls, wrongful death
-              claims, and other injury matters.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-gradient-sunset text-foreground shadow-elegant hover:opacity-95">
-                <Link to="/attorneys">
-                  Browse Jacksonville Accident Attorneys <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                <Link to="/for-law-firms">For Law Firms: Build Your Own Lead Asset</Link>
-              </Button>
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
+                <MapPin className="h-3 w-3" /> Jacksonville · Duval County · FL
+              </span>
+              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] text-balance sm:text-5xl lg:text-6xl">
+                Find Personal Injury Attorneys in <span className="text-accent">JAX</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
+                A local directory of Jacksonville accident and injury law firms helping residents connect with legal
+                help after car accidents, truck accidents, motorcycle accidents, slip and falls, wrongful death
+                claims, and other injury matters.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg" className="bg-gradient-sunset text-foreground shadow-elegant hover:opacity-95">
+                  <Link to="/attorneys">
+                    Browse Jacksonville Accident Attorneys <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                  <Link to="/for-law-firms">For Law Firms: Build Your Own Lead Asset</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="lg:pl-4">
+              <HeroLeadForm />
             </div>
           </div>
         </div>
