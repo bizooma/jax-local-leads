@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PracticeAreaFilter } from "@/components/PracticeAreaFilter";
 import { FirmCardCarousel } from "@/components/FirmCardCarousel";
 import { PRACTICE_AREAS, FIRMS, type PracticeAreaSlug } from "@/data/firms";
+import jaxSkyline from "@/assets/jax-skyline.avif";
 
 export const Route = createFileRoute("/")({
   head: () => ({
