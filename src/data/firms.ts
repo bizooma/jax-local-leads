@@ -244,7 +244,7 @@ export const FIRMS: Firm[] = [
       "Established Florida personal injury practice representing seriously injured clients since 1978.",
     full_description:
       "Abbott Law Group, P.A. is a Jacksonville-based personal injury firm that has been recovering compensation for seriously injured Floridians since 1978. The firm handles auto, motorcycle, slip and fall, medical malpractice, and wrongful death cases across the state.",
-    address: "9ထ8 N Liberty St",
+    address: "3 Independent Dr",
     city: "Jacksonville",
     state: "FL",
     zip: "32202",
