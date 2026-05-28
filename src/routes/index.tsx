@@ -90,6 +90,7 @@ function Index() {
               </Link>
             </p>
           )}
+          <FirmCardCarousel firms={FIRMS} filter={filter} />
         </div>
       </section>
 
