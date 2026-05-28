@@ -108,6 +108,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description: "A local directory of Jacksonville accident and injury law firms.",
         }),
       },
+      {
+        src: "https://bizooma.com/accessibility-widget.js",
+        "data-org": "bizooma",
+        defer: true,
+      },
     ],
   }),
   shellComponent: RootShell,
