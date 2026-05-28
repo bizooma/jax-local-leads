@@ -9,9 +9,20 @@ export function FirmCard({ firm }: { firm: Firm }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-all hover:-translate-y-0.5 hover:shadow-elegant">
       <div className="flex items-start gap-4 border-b border-border/60 p-5">
-        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg bg-gradient-river text-primary-foreground">
+        <div
+          className={`grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-lg ${
+            firm.logo_url
+              ? "border border-border bg-white"
+              : "bg-gradient-river text-primary-foreground"
+          }`}
+        >
           {firm.logo_url ? (
-            <img src={firm.logo_url} alt={`${firm.firm_name} logo`} className="h-full w-full rounded-lg object-cover" />
+            <img
+              src={firm.logo_url}
+              alt={`${firm.firm_name} logo`}
+              className="h-10 w-10 object-contain"
+              loading="lazy"
+            />
           ) : (
             <Building2 className="h-7 w-7" />
           )}
