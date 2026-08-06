@@ -90,14 +90,14 @@ export function HeroLeadForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-elegant">
+    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-8 text-card-foreground shadow-2xl backdrop-blur-xl sm:p-7">
         <CheckCircle2 className="h-10 w-10 text-accent" />
         <h3 className="mt-4 font-display text-2xl font-bold">Thanks — we got it.</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           A local Jacksonville attorney from our directory will reach out to discuss your case. No
           obligation, free consultation.
         </p>
-        <Button variant="outline" className="mt-6" onClick={() => setSubmitted(false)}>
+        <Button variant="outline" className="mt-6 border-foreground/30 bg-primary-foreground/10 text-foreground hover:bg-foreground/10" onClick={() => setSubmitted(false)}>
           Submit another request
         </Button>
       </div>
@@ -105,33 +105,33 @@ export function HeroLeadForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-elegant sm:p-7">
+    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-6 text-card-foreground shadow-2xl backdrop-blur-xl sm:p-7">
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
         <Shield className="h-3.5 w-3.5" /> Free case review
       </div>
       <h2 className="mt-2 font-display text-2xl font-bold text-foreground">
         Tell us about your accident
       </h2>
-      <p className="mt-1 text-sm text-muted-foreground">
+      <p className="mt-1 text-sm text-foreground/80">
         Confidential — connect with a Jacksonville injury attorney.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-5 space-y-4" noValidate>
         <div className="space-y-1.5">
           <Label htmlFor="name">Full name</Label>
-          <Input id="name" name="name" autoComplete="name" maxLength={100} required />
+          <Input id="name" name="name" autoComplete="name" maxLength={100} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
           {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label htmlFor="phone">Phone</Label>
-            <Input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={30} required />
+            <Input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={30} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
             {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} required />
+            <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
             {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
           </div>
         </div>
@@ -139,7 +139,7 @@ export function HeroLeadForm() {
         <div className="space-y-1.5">
           <Label htmlFor="accidentType">Type of accident</Label>
           <Select value={accidentType} onValueChange={setAccidentType}>
-            <SelectTrigger id="accidentType">
+            <SelectTrigger id="accidentType" className="bg-primary-foreground/90 text-foreground data-[placeholder]:text-foreground/50">
               <SelectValue placeholder="Select an accident type" />
             </SelectTrigger>
             <SelectContent>
@@ -160,6 +160,7 @@ export function HeroLeadForm() {
             maxLength={1000}
             placeholder="Briefly describe the accident, injuries, and when it occurred."
             required
+            className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50"
           />
           {errors.details && <p className="text-xs text-destructive">{errors.details}</p>}
         </div>
@@ -177,7 +178,7 @@ export function HeroLeadForm() {
         >
           {submitting ? "Sending..." : "Get my free case review"}
         </Button>
-        <p className="text-[11px] leading-relaxed text-muted-foreground">
+        <p className="text-[11px] leading-relaxed text-foreground/80">
           By submitting, you agree to be contacted about your inquiry. Submitting this form does not
           create an attorney-client relationship.
         </p>
