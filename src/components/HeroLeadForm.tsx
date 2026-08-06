@@ -112,7 +112,7 @@ export function HeroLeadForm() {
       <h2 className="mt-2 font-display text-2xl font-bold text-foreground">
         Tell us about your accident
       </h2>
-      <p className="mt-1 text-sm text-foreground/70">
+      <p className="mt-1 text-sm text-foreground/80">
         Confidential — connect with a Jacksonville injury attorney.
       </p>
 
