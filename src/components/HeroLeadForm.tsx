@@ -119,19 +119,19 @@ export function HeroLeadForm() {
       <form onSubmit={handleSubmit} className="mt-5 space-y-4" noValidate>
         <div className="space-y-1.5">
           <Label htmlFor="name">Full name</Label>
-          <Input id="name" name="name" autoComplete="name" maxLength={100} required className="bg-white/90 text-foreground placeholder:text-foreground/50" />
+          <Input id="name" name="name" autoComplete="name" maxLength={100} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
           {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label htmlFor="phone">Phone</Label>
-            <Input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={30} required className="bg-white/90 text-foreground placeholder:text-foreground/50" />
+            <Input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={30} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
             {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} required className="bg-white/90 text-foreground placeholder:text-foreground/50" />
+            <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} required className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50" />
             {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
           </div>
         </div>
@@ -139,7 +139,7 @@ export function HeroLeadForm() {
         <div className="space-y-1.5">
           <Label htmlFor="accidentType">Type of accident</Label>
           <Select value={accidentType} onValueChange={setAccidentType}>
-            <SelectTrigger id="accidentType" className="bg-white/90 text-foreground data-[placeholder]:text-foreground/50">
+            <SelectTrigger id="accidentType" className="bg-primary-foreground/90 text-foreground data-[placeholder]:text-foreground/50">
               <SelectValue placeholder="Select an accident type" />
             </SelectTrigger>
             <SelectContent>
@@ -160,7 +160,7 @@ export function HeroLeadForm() {
             maxLength={1000}
             placeholder="Briefly describe the accident, injuries, and when it occurred."
             required
-            className="bg-white/90 text-foreground placeholder:text-foreground/50"
+            className="bg-primary-foreground/90 text-foreground placeholder:text-foreground/50"
           />
           {errors.details && <p className="text-xs text-destructive">{errors.details}</p>}
         </div>
