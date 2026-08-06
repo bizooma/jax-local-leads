@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Turnstile } from "@/components/Turnstile";
+import { verifyTurnstile } from "@/lib/api/turnstile.functions";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,6 +26,9 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <>
@@ -39,9 +45,28 @@ function Contact() {
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              setSent(true);
+              if (!captchaToken) {
+                setCaptchaError("Please complete the verification challenge.");
+                return;
+              }
+              setCaptchaError("");
+              setSubmitting(true);
+              try {
+                const verification = await verifyTurnstile({ data: { token: captchaToken } });
+                if (!verification.success) {
+                  setCaptchaToken("");
+                  setCaptchaError("Verification failed. Please try again.");
+                  toast.error("We couldn't verify your submission. Please try again.");
+                  return;
+                }
+                setSent(true);
+              } catch {
+                setCaptchaError("Verification failed. Please try again.");
+              } finally {
+                setSubmitting(false);
+              }
             }}
             className="space-y-5 rounded-2xl border border-border bg-card p-8 shadow-card"
           >
@@ -91,8 +116,12 @@ function Contact() {
                   <Label htmlFor="message">Message</Label>
                   <Textarea id="message" rows={5} required />
                 </div>
-                <Button type="submit" size="lg" className="w-full bg-gradient-river text-primary-foreground hover:opacity-95">
-                  Send message
+                <div className="space-y-1.5">
+                  <Turnstile onVerify={setCaptchaToken} onExpire={() => setCaptchaToken("")} />
+                  {captchaError && <p className="text-xs text-destructive">{captchaError}</p>}
+                </div>
+                <Button type="submit" size="lg" disabled={submitting} className="w-full bg-gradient-river text-primary-foreground hover:opacity-95">
+                  {submitting ? "Sending..." : "Send message"}
                 </Button>
               </>
             )}

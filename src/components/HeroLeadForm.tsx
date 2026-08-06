@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { Turnstile } from "@/components/Turnstile";
+import { verifyTurnstile } from "@/lib/api/turnstile.functions";
 
 const leadSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name").max(100),
@@ -30,8 +32,9 @@ export function HeroLeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [accidentType, setAccidentType] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [captchaToken, setCaptchaToken] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formEl = e.currentTarget;
     const formData = new FormData(formEl);
@@ -54,16 +57,35 @@ export function HeroLeadForm() {
       return;
     }
 
+    if (!captchaToken) {
+      setErrors({ captcha: "Please complete the verification challenge." });
+      return;
+    }
+
     setErrors({});
     setSubmitting(true);
-    // Demo only — no backend wired up.
-    setTimeout(() => {
+
+    try {
+      const verification = await verifyTurnstile({ data: { token: captchaToken } });
+      if (!verification.success) {
+        setSubmitting(false);
+        setCaptchaToken("");
+        setErrors({ captcha: "Verification failed. Please try again." });
+        toast.error("We couldn't verify your submission. Please try again.");
+        return;
+      }
+    } catch {
       setSubmitting(false);
-      setSubmitted(true);
-      toast.success("Your request has been received. An attorney will reach out shortly.");
-      formEl.reset();
-      setAccidentType("");
-    }, 600);
+      setErrors({ captcha: "Verification failed. Please try again." });
+      return;
+    }
+
+    setSubmitting(false);
+    setSubmitted(true);
+    toast.success("Your request has been received. An attorney will reach out shortly.");
+    formEl.reset();
+    setAccidentType("");
+    setCaptchaToken("");
   };
 
   if (submitted) {
@@ -140,6 +162,11 @@ export function HeroLeadForm() {
             required
           />
           {errors.details && <p className="text-xs text-destructive">{errors.details}</p>}
+        </div>
+
+        <div className="space-y-1.5">
+          <Turnstile onVerify={setCaptchaToken} onExpire={() => setCaptchaToken("")} />
+          {errors.captcha && <p className="text-xs text-destructive">{errors.captcha}</p>}
         </div>
 
         <Button
