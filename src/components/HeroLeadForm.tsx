@@ -105,14 +105,14 @@ export function HeroLeadForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-6 text-primary-foreground shadow-2xl backdrop-blur-xl sm:p-7">
+    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-6 text-card-foreground shadow-2xl backdrop-blur-xl sm:p-7">
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
         <Shield className="h-3.5 w-3.5" /> Free case review
       </div>
-      <h2 className="mt-2 font-display text-2xl font-bold text-primary-foreground">
+      <h2 className="mt-2 font-display text-2xl font-bold text-foreground">
         Tell us about your accident
       </h2>
-      <p className="mt-1 text-sm text-primary-foreground/80">
+      <p className="mt-1 text-sm text-muted-foreground">
         Confidential — connect with a Jacksonville injury attorney.
       </p>
 
