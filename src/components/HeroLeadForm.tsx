@@ -178,7 +178,7 @@ export function HeroLeadForm() {
         >
           {submitting ? "Sending..." : "Get my free case review"}
         </Button>
-        <p className="text-[11px] leading-relaxed text-foreground/70">
+        <p className="text-[11px] leading-relaxed text-foreground/80">
           By submitting, you agree to be contacted about your inquiry. Submitting this form does not
           create an attorney-client relationship.
         </p>
