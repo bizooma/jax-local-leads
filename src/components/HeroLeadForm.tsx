@@ -90,14 +90,14 @@ export function HeroLeadForm() {
 
   if (submitted) {
     return (
-    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-8 text-primary-foreground shadow-2xl backdrop-blur-xl sm:p-7">
+    <div className="rounded-2xl border border-primary-foreground/20 bg-primary-foreground/10 p-8 text-card-foreground shadow-2xl backdrop-blur-xl sm:p-7">
         <CheckCircle2 className="h-10 w-10 text-accent" />
         <h3 className="mt-4 font-display text-2xl font-bold">Thanks — we got it.</h3>
-        <p className="mt-2 text-sm text-primary-foreground/80">
+        <p className="mt-2 text-sm text-muted-foreground">
           A local Jacksonville attorney from our directory will reach out to discuss your case. No
           obligation, free consultation.
         </p>
-        <Button variant="outline" className="mt-6 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground" onClick={() => setSubmitted(false)}>
+        <Button variant="outline" className="mt-6 border-foreground/30 bg-primary-foreground/10 text-foreground hover:bg-foreground/10" onClick={() => setSubmitted(false)}>
           Submit another request
         </Button>
       </div>
